@@ -15,8 +15,8 @@ class App extends Component {
 				{ name: "Niekit", salary: 800, increase: false, id: 1 },////deleteItem opeira sie na id na ktory nacisnalismy
 				{ name: "Denis", salary: 3000, increase: true, id: 2 },// ustala nową data
 				{ name: "Kasper", salary: 5000, increase: false, id: 3 },//data ustala sie jako data ale bez wybranego id
-			],
-		};
+			]
+		}
 		this.maxId = 4;
 	}
 	deleteItem = (id) => {

@@ -5,8 +5,6 @@ const AppFilter = () => {
     return (
      <div className="button-group">
          <button 
-
-         //i
          className="btn btn-light"
          type="button">
              Wszyscy niewolnicy
