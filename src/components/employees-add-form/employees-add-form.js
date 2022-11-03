@@ -29,7 +29,10 @@ class EmployeesAddForm extends Component {
 		return (
 			<div className="app-add-form">
 				<h3>Dodaj niewolnika</h3>
-				<form className="add-form d-flex" onSubmit={this.onSubmit}>
+				<form 
+				className="add-form d-flex" 
+				onSubmit={this.onSubmit}
+				>
 					<input
 						type="text"
 						className="form-control new-post-label"
@@ -38,6 +41,7 @@ class EmployeesAddForm extends Component {
 						value={name}
 						onChange={this.onValueChange}
 					/>
+					
 					<input
 						type="number"
 						className="form-control new-post-label"

@@ -12,9 +12,9 @@ class App extends Component {
 		super(props);
 		this.state = {
 			data: [
-				{ name: "Niekit", salary: 800, increase: false, id: 1 },////deleteItem opeira sie na id na ktory nacisnalismy
-				{ name: "Denis", salary: 3000, increase: true, id: 2 },// ustala nową data
-				{ name: "Kasper", salary: 5000, increase: false, id: 3 },//data ustala sie jako data ale bez wybranego id
+				{ name: "Niekit", salary: 800, increase: false, star: false, id: 1 },////deleteItem opeira sie na id na ktory nacisnalismy
+				{ name: "Denis", salary: 3000, increase: false, star: false, id: 2 },// ustala nową data
+				{ name: "Kasper", salary: 5000, increase: false, star: false, id: 3 },//data ustala sie jako data ale bez wybranego id
 			]
 		}
 		this.maxId = 4;
@@ -26,13 +26,25 @@ class App extends Component {
 			}
 		})
 	}
+	onToggleProp = (id, prop) => {
+		this.setState(({data}) => ({
+			data: data.map(item => {
+				if (item.id === id) {
+					return {...item, [prop]: !item[prop]}
+				}
+				return item;
+			})
+		}))
+	}
 
 	addItem = (name, salary) => {
 	 const newItem = {
 		name,
 		salary,
 		increase: false,
-		id : this.maxId++
+		id : this.maxId++,
+		star: false,
+		
 	 }
 	 this.setState(({data}) => {
 		 const newArr = [...data, newItem];
@@ -43,16 +55,20 @@ class App extends Component {
 
 	}
 	render() {
+		const employees = this.state.data.length;
+		const increased = this.state.data.filter(item => item.increase).length;
 		return (
 			<div className="app">
-				<AppInfo />
+				<AppInfo employees={employees} increased={increased}/>
 				<div className="search-panel">
 					<SearchPanel />
-					<AppFilter />
+					<AppFilter  />
 				</div>
 				<EmployeesList
 					data={this.state.data}
 					onDelete={this.deleteItem}
+					onToggleProp={this.onToggleProp}
+					
 				/>
 				<EmployeesAddForm onAdd={this.addItem} />
 			</div>
