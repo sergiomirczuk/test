@@ -15,8 +15,10 @@ class EmployeesAddForm extends Component {
 			[e.target.name]: e.target.value,
 		});
 	};
+	
 	onSubmit = (e) => {
 		e.preventDefault();
+		if (this.state.name.length < 3 || !this.state.salary) return;
 		this.props.onAdd(this.state.name, this.state.salary);
 		this.setState({
 			salary: "",
@@ -41,7 +43,7 @@ class EmployeesAddForm extends Component {
 						value={name}
 						onChange={this.onValueChange}
 					/>
-					
+				
 					<input
 						type="number"
 						className="form-control new-post-label"
